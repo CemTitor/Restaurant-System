@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254478451087",
+    "project_id": "restaurant-system-fe02a",
+    "storage_bucket": "restaurant-system-fe02a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254478451087:android:e926267de69a6faaaecbfa",
+        "android_client_info": {
+          "package_name": "cemustafa.restaurant_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254478451087-2em81sd7et4fmajorblttucpm9d9ojup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGVCF4eEFYp8APLbb-hA0d2Q3U_SMfBGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254478451087-2em81sd7et4fmajorblttucpm9d9ojup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
