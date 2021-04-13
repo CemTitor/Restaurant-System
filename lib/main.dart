@@ -31,7 +31,7 @@ class FlashChat extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
-        mai
+        MainPage.id: (context) => MainPage(),
 
 
       },

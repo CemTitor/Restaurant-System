@@ -8,12 +8,9 @@ import 'package:restaurant_system/screens/homePage.dart';
 
 class MainPage extends StatefulWidget{
 
-
    static const String id = 'mainPage';
     @override
     _MainState createState() => _MainState();
-
-
 
 }
 class _MainState extends State<MainPage>{
