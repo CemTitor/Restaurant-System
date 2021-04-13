@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:restaurant_system/components/rounded_button.dart';
+import 'package:restaurant_system/screens/mainPage.dart';
+import 'package:restaurant_system/screens/homePage.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
