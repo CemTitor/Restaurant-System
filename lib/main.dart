@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_system/screens/home_screen.dart';
+import 'package:restaurant_system/screens/book_screen.dart';
+import 'package:restaurant_system/screens/first_screen.dart';
 import 'package:restaurant_system/screens/login_screen.dart';
 import 'package:restaurant_system/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:restaurant_system/screens/mainPage.dart';
-import 'package:restaurant_system/screens/homePage.dart';
-
+import 'package:restaurant_system/screens/main_screen.dart';
+import 'package:restaurant_system/screens/home_screen.dart';
 
 void main() async {
   // Ensure that Firebase is initialized
@@ -32,8 +32,7 @@ class FlashChat extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         MainPage.id: (context) => MainPage(),
-
-
+        BookScreen.id: (context) => BookScreen(),
       },
     );
   }

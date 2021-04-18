@@ -2,9 +2,9 @@ import 'package:restaurant_system/components/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_system/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurant_system/screens/first_screen.dart';
+import 'package:restaurant_system/screens/main_screen.dart';
 import 'package:restaurant_system/screens/home_screen.dart';
-import 'package:restaurant_system/screens/mainPage.dart';
-import 'package:restaurant_system/screens/homePage.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFD71219),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -31,17 +31,26 @@ class _LoginScreenState extends State<LoginScreen> {
               tag: 'logo',
               child: Container(
                 height: 200.0,
-                child: Image.asset('images/resto2.png'),
+                child: Image.asset(
+                  'images/resto2.png',
+                  color: Colors.white,
+                ),
               ),
             ),
             SizedBox(
               height: 48.0,
             ),
             Card(
+              color: Color(0xFFD71219),
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.blue,
               child: ListTile(
-                leading: Icon(Icons.email),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+                leading: Icon(
+                  Icons.email,
+                  color: Color(0xFFD71219),
+                ),
                 tileColor: Colors.white,
                 title: TextFormField(
                   keyboardType: TextInputType.emailAddress,
@@ -58,10 +67,16 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             Card(
+              color: Color(0xFFD71219),
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.blue,
               child: ListTile(
-                leading: Icon(Icons.lock),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+                leading: Icon(
+                  Icons.lock,
+                  color: Color(0xFFD71219),
+                ),
                 tileColor: Colors.white,
                 title: TextFormField(
                   obscureText: true, // password showing us as secret
@@ -80,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             RoundedButton(
               title: 'Log In',
-              colour: Colors.lightBlueAccent,
+              colour: Colors.white,
               onPressed: () async {
                 try {
                   final user = await _auth.signInWithEmailAndPassword(

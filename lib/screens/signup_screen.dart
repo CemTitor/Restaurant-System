@@ -2,9 +2,9 @@ import 'package:restaurant_system/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_system/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurant_system/screens/first_screen.dart';
+import 'package:restaurant_system/screens/main_screen.dart';
 import 'package:restaurant_system/screens/home_screen.dart';
-import 'package:restaurant_system/screens/mainPage.dart';
-import 'package:restaurant_system/screens/homePage.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -31,7 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFD71219),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -42,17 +42,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               tag: 'logo',
               child: Container(
                 height: 200.0,
-                child: Image.asset('images/resto2.png'),
+                child: Image.asset(
+                  'images/resto2.png',
+                  color: Colors.white,
+                ),
               ),
             ),
             SizedBox(
               height: 48.0,
             ),
             Card(
+              color: Color(0xFFD71219),
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.blue,
+              // color: Colors.blue,
               child: ListTile(
-                leading: Icon(Icons.email),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+                leading: Icon(
+                  Icons.email,
+                  color: Color(0xFFD71219),
+                ),
                 tileColor: Colors.white,
                 title: TextFormField(
                   autovalidateMode: AutovalidateMode.always,
@@ -76,10 +86,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             Card(
+              color: Color(0xFFD71219),
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.blue,
               child: ListTile(
-                leading: Icon(Icons.lock),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+                leading: Icon(
+                  Icons.lock,
+                  color: Color(0xFFD71219),
+                ),
                 tileColor: Colors.white,
                 title: TextFormField(
                     autovalidateMode: AutovalidateMode.always,
@@ -106,10 +122,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             Card(
+              color: Color(0xFFD71219),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40.0),
+              ),
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.blue,
               child: ListTile(
-                leading: Icon(Icons.lock),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+                leading: Icon(
+                  Icons.lock,
+                  color: Color(0xFFD71219),
+                ),
                 tileColor: Colors.white,
                 title: TextFormField(
                     autovalidateMode: AutovalidateMode.always,
@@ -135,7 +160,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             RoundedButton(
               title: 'Register',
-              colour: Colors.blueAccent,
+              colour: Colors.white,
               onPressed: () async {
                 //async olmasının nedeni kullanıcıyı yaratmadan diğer işleme geçmemesi
                 try {
