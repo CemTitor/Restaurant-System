@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:restaurant_system/components/rounded_button.dart';
-import 'package:restaurant_system/screens/main_screen.dart';
-import 'package:restaurant_system/screens/home_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class FirstScreen extends StatefulWidget {
   static const String id = 'home_screen';
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _FirstScreenState createState() => _FirstScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _FirstScreenState extends State<FirstScreen>
     with SingleTickerProviderStateMixin {
   //state mixin ekleyerek welcomescreenstatein ticker provide olarak davranmasını sağlarız.
   AnimationController controller;
@@ -111,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen>
               title: 'Sign In',
               colour: Colors.white,
               onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.id);
+                Navigator.pushNamed(context, SignupScreen.id);
               },
             ),
           ],

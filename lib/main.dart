@@ -13,25 +13,24 @@ void main() async {
   // Initialize Firebase
   await Firebase.initializeApp();
   //
-  runApp(FlashChat());
+  runApp(RestaurantSystem());
 }
 
-class FlashChat extends StatelessWidget {
+class RestaurantSystem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData.dark().copyWith(
-      //   textTheme: TextTheme(
-      //     body1: TextStyle(color: Colors.black54),
-      //   ),
-      // ),
-      home: HomeScreen(),
-      initialRoute: HomeScreen.id,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Color(0xFFD71219),
+      ),
+      home: FirstScreen(),
       routes: {
-        HomeScreen.id: (context) => HomeScreen(),
+        FirstScreen.id: (context) => FirstScreen(),
         LoginScreen.id: (context) => LoginScreen(),
-        RegistrationScreen.id: (context) => RegistrationScreen(),
-        MainPage.id: (context) => MainPage(),
+        SignupScreen.id: (context) => SignupScreen(),
+        MainScreen.id: (context) => MainScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
         BookScreen.id: (context) => BookScreen(),
       },
     );
