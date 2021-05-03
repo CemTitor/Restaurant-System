@@ -4,10 +4,13 @@ import 'package:restaurant_system/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurant_system/screens/first_screen.dart';
 import 'package:restaurant_system/screens/main_screen.dart';
-import 'package:restaurant_system/screens/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 class SignupScreen extends StatefulWidget {
   static const String id = 'registration_screen';
+
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
@@ -17,9 +20,12 @@ class _SignupScreenState extends State<SignupScreen> {
   final _confirmPasswordController = TextEditingController();
 
   final _auth = FirebaseAuth.instance; //authentication
+
   String email;
   String password;
   String confirmPassword;
+  String name;
+  String surname;
 
   @override
   void dispose() {
@@ -82,7 +88,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         hintText: 'Enter your email'),
                   ),
                 ),
-              ),
+              ), //email
               SizedBox(
                 height: 8.0,
               ),
@@ -118,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Enter your password')),
                 ),
-              ),
+              ), //password
               SizedBox(
                 height: 8.0,
               ),
@@ -155,7 +161,65 @@ class _SignupScreenState extends State<SignupScreen> {
                       decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Confirm your password')),
                 ),
+              ), //confirm pass
+              SizedBox(
+                height: 24.0,
               ),
+              Card(
+                color: Color(0xFFD71219),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40.0),
+                ),
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100.0),
+                  ),
+                  leading: Icon(
+                    Icons.drive_file_rename_outline,
+                    color: Color(0xFFD71219),
+                  ),
+                  tileColor: Colors.white,
+                  title: TextFormField(
+                      autovalidateMode: AutovalidateMode.always,
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        name = value;
+                      },
+                      decoration:
+                          kTextFieldDecoration.copyWith(hintText: 'Name')),
+                ),
+              ), //name
+              SizedBox(
+                height: 24.0,
+              ),
+              Card(
+                color: Color(0xFFD71219),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40.0),
+                ),
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100.0),
+                  ),
+                  leading: Icon(
+                    Icons.drive_file_rename_outline,
+                    color: Color(0xFFD71219),
+                  ),
+                  tileColor: Colors.white,
+                  title: TextFormField(
+                      autovalidateMode: AutovalidateMode.always,
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        surname = value;
+                      },
+                      decoration:
+                          kTextFieldDecoration.copyWith(hintText: 'Surname')),
+                ),
+              ), //surname
               SizedBox(
                 height: 24.0,
               ),
@@ -170,6 +234,21 @@ class _SignupScreenState extends State<SignupScreen> {
                       final newUser =
                           await _auth.createUserWithEmailAndPassword(
                               email: email, password: password);
+                      _firestore
+                          .collection('users')
+                          .doc(_auth.currentUser.uid)
+                          .set({
+                        'email': email,
+                        'password': password,
+                        'name': name,
+                        'surname': surname,
+                      });
+                      // _firestore.collection('users').add({
+                      //   'email': _auth.currentUser.email,
+                      //   'password': password,
+                      //   'name': name,
+                      //   'surname': surname,
+                      // });
                       if (newUser != null) {
                         Navigator.pushNamed(context, FirstScreen.id);
                       }
