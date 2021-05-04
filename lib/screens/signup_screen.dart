@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurant_system/screens/first_screen.dart';
 import 'package:restaurant_system/screens/main_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:restaurant_system/models/userr.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
@@ -18,14 +19,15 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
+  //
   final _auth = FirebaseAuth.instance; //authentication
 
-  String email;
-  String password;
-  String confirmPassword;
-  String name;
-  String surname;
+  // String email;
+  // String password;
+  // String confirmPassword;
+  // String name;
+  // String surname;
+  Userr user1 = new Userr();
 
   @override
   void dispose() {
@@ -33,6 +35,8 @@ class _SignupScreenState extends State<SignupScreen> {
     _confirmPasswordController.dispose();
     super.dispose();
   }
+
+  // Future sendData()
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     keyboardType: TextInputType.emailAddress,
                     textAlign: TextAlign.center,
                     onChanged: (value) {
-                      email = value;
+                      user1.email = value;
                     },
                     decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter your email'),
@@ -119,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        password = value;
+                        user1.password = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Enter your password')),
@@ -156,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        confirmPassword = value;
+                        user1.confirmPassword = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Confirm your password')),
@@ -185,7 +189,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        name = value;
+                        user1.name = value;
                       },
                       decoration:
                           kTextFieldDecoration.copyWith(hintText: 'Name')),
@@ -214,7 +218,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        surname = value;
+                        user1.surname = value;
                       },
                       decoration:
                           kTextFieldDecoration.copyWith(hintText: 'Surname')),
@@ -229,19 +233,20 @@ class _SignupScreenState extends State<SignupScreen> {
                 onPressed: () async {
                   //async olmasının nedeni kullanıcıyı yaratmadan diğer işleme geçmemesi
                   try {
-                    if (password == confirmPassword) {
+                    if (user1.password == user1.confirmPassword) {
                       //final ifadesi var because this is going to return future
                       final newUser =
                           await _auth.createUserWithEmailAndPassword(
-                              email: email, password: password);
+                              email: user1.email, password: user1.password);
+                      // _firestore.collection('users').doc('name').snapshots();
                       _firestore
                           .collection('users')
                           .doc(_auth.currentUser.uid)
                           .set({
-                        'email': email,
-                        'password': password,
-                        'name': name,
-                        'surname': surname,
+                        'email': user1.email,
+                        'password': user1.password,
+                        'name': user1.name,
+                        'surname': user1.surname,
                       });
                       // _firestore.collection('users').add({
                       //   'email': _auth.currentUser.email,

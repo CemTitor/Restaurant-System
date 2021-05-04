@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_system/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurant_system/screens/main_screen.dart';
-import 'package:restaurant_system/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';

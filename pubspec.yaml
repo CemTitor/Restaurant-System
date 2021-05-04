@@ -33,6 +33,8 @@ dependencies:
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.3
   carousel_pro: ^1.0.0
+  firebase_storage: ^8.0.5
+
 
 dev_dependencies:
   flutter_test:
