@@ -74,4 +74,4 @@ class _SearchScreenState extends State<SearchScreen> {
     ),
     );
   }
-}
+}//some problems gonna fix

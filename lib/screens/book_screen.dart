@@ -12,7 +12,7 @@ class _BookScreenState extends State<BookScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        child: Text('book ekranı'),
+        child: Text('Book Screen'),
       ),
     );
   }
