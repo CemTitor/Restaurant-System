@@ -39,7 +39,7 @@ class _HomeState extends State<HomeScreen> {
             Address(),
             PreviousOrdersTitle(),
             PreviousOrders(),
-            Favorites(),
+            RestaurantWidget(),
           ],
         ),
       ),

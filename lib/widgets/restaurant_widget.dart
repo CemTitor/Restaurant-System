@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_system/screens/resto_detail_screen.dart';
 
 class Restaurant extends StatelessWidget {
   String restaurantName;
@@ -35,10 +36,15 @@ class Restaurant extends StatelessWidget {
               SizedBox(
                 width: 15,
               ),
-              Text(
-                restaurantName + ", " + restaurantAdress,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, RestoDetailScreen.id);
+                },
+                child: Text(
+                  restaurantName + ", " + restaurantAdress,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

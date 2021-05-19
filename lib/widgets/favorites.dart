@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_system/widgets/restaurant.dart';
+import 'package:restaurant_system/widgets/restaurant_widget.dart';
 
-class Favorites extends StatelessWidget {
+class RestaurantWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

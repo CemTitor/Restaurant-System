@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_system/screens/book_screen.dart';
+import 'package:restaurant_system/screens/resto_detail_screen.dart';
 import 'package:restaurant_system/screens/first_screen.dart';
+import 'package:restaurant_system/screens/food_detail.dart';
 import 'package:restaurant_system/screens/login_screen.dart';
 import 'package:restaurant_system/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,6 +34,8 @@ class RestaurantSystem extends StatelessWidget {
         MainScreen.id: (context) => MainScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         BookScreen.id: (context) => BookScreen(),
+        RestoDetailScreen.id: (context) => RestoDetailScreen(),
+        FoodDetailScreen.id: (context) => FoodDetailScreen(),
       },
     );
   }
