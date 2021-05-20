@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_system/screens/book_screen.dart';
 import 'package:restaurant_system/screens/resto_detail_screen.dart';
 import 'package:restaurant_system/screens/first_screen.dart';
@@ -8,6 +9,8 @@ import 'package:restaurant_system/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:restaurant_system/screens/main_screen.dart';
 import 'package:restaurant_system/screens/home_screen.dart';
+
+import 'models/my_provider.dart';
 
 void main() async {
   // Ensure that Firebase is initialized
@@ -21,22 +24,25 @@ void main() async {
 class RestaurantSystem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Color(0xFFD71219),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => MyProvider()),],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Color(0xFFD71219),
+        ),
+        home: FirstScreen(),
+        routes: {
+          FirstScreen.id: (context) => FirstScreen(),
+          LoginScreen.id: (context) => LoginScreen(),
+          SignupScreen.id: (context) => SignupScreen(),
+          MainScreen.id: (context) => MainScreen(),
+          HomeScreen.id: (context) => HomeScreen(),
+          BookScreen.id: (context) => BookScreen(),
+          RestoDetailScreen.id: (context) => RestoDetailScreen(),
+          FoodDetailScreen.id: (context) => FoodDetailScreen(),
+        },
       ),
-      home: FirstScreen(),
-      routes: {
-        FirstScreen.id: (context) => FirstScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        SignupScreen.id: (context) => SignupScreen(),
-        MainScreen.id: (context) => MainScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
-        BookScreen.id: (context) => BookScreen(),
-        RestoDetailScreen.id: (context) => RestoDetailScreen(),
-        FoodDetailScreen.id: (context) => FoodDetailScreen(),
-      },
     );
   }
 }

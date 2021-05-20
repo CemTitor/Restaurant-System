@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_system/models/food_modle.dart';
+import 'package:restaurant_system/models/my_provider.dart';
 
 
 final priceTextStyle = TextStyle(
@@ -10,11 +13,15 @@ final priceTextStyle = TextStyle(
 class CartScreen extends StatefulWidget {
   @override
   _CartScreenState createState() => _CartScreenState();
+
+
 }
 
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -56,7 +63,7 @@ class _CartScreenState extends State<CartScreen> {
               const SizedBox(height: 30.0),
               OrderListItem(
                 item: OrderItem(
-                  title: "Mantarlı Pizza",
+
                   qty: 2,
                   price: 20,
                   bgColor: Colors.deepOrange,
@@ -66,25 +73,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
               const SizedBox(height: 20.0),
-              OrderListItem(
-                item: OrderItem(
-                    title: "Diyet Kola",
-                    qty: 1,
-                    price: 5,
-                    bgColor: Colors.deepOrange,
 
-
-                    ),
-              ),
-              const SizedBox(height: 20.0),
-              OrderListItem(
-                item: OrderItem(
-                    title: "Triliçe",
-                    qty: 1,
-                    price: 8,
-                    bgColor: Colors.deepOrange,
-                ),
-              ),
               const SizedBox(height: 20.0),
               _buildDivider(),
               const SizedBox(height: 20.0),
@@ -101,7 +90,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   Spacer(),
                   Text(
-                    "\TL53",
+                    "\TL40",
                     style: priceTextStyle.copyWith(color: Colors.indigo),
                   ),
                   const SizedBox(width: 20.0),
@@ -145,6 +134,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 class OrderItem {
+
   final String title;
   final int qty;
   final double price;
@@ -159,6 +149,11 @@ class OrderListItem extends StatelessWidget {
   const OrderListItem({Key key, this.item}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    List<FoodModle> singleFoodList= [];
+    MyProvider provider=Provider.of<MyProvider>(context);
+    provider.getFoodList();
+    singleFoodList = provider.throwFoodModleList;//firebasede foods collectionunu listeye ekledim. /ssu an tek bi veri cekiyoruz ffakaat yani listenin 1.elamanı (Foods daki pizza normalde pizza yı hamburgeri vs hepsini cekmemiz lazım onun ıcın de class yerine widget kullanacagız)
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
@@ -171,9 +166,9 @@ class OrderListItem extends StatelessWidget {
               color: item.bgColor,
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: item.image != null
+            child: singleFoodList[0].image != null
                 ? Image.network(
-              item.image,
+              singleFoodList[0].image,
               fit: BoxFit.cover,
             )
                 : null,
@@ -185,7 +180,7 @@ class OrderListItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  item.title,
+                  singleFoodList[0].name,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -240,4 +235,4 @@ class OrderListItem extends StatelessWidget {
       ),
     );
   }
-}//images will add *
+}//
