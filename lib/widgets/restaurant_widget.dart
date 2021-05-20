@@ -7,16 +7,14 @@ import 'package:restaurant_system/screens/resto_detail_screen.dart';
 class Restaurant extends StatelessWidget {
   String restaurantName;
   String restaurantAdress;
-  double restaurantPoint;
+  int restaurantPoint;
 
   Restaurant(this.restaurantName, this.restaurantAdress, this.restaurantPoint);
 
   @override
   Widget build(BuildContext context) {
-    List<RestoList> singleRestoList= [];
-    MyProvider provider=Provider.of<MyProvider>(context);
-    singleRestoList = provider.throwrestlist;
-    provider.getRList();
+
+
     return Container(
       padding: EdgeInsets.all(8),
       color: Colors.white,
@@ -35,7 +33,7 @@ class Restaurant extends StatelessWidget {
                 width: 40,
                 child: Center(
                   child: Text(
-                    singleRestoList[0].point.toString(),
+                    restaurantPoint.toString(),
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -48,7 +46,7 @@ class Restaurant extends StatelessWidget {
                   Navigator.pushNamed(context, RestoDetailScreen.id);
                 },
                 child: Text(
-                  singleRestoList[0].name + ", " + singleRestoList[0].adres,
+                  restaurantName + ", " + restaurantAdress,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

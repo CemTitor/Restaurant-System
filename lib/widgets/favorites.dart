@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_system/models/my_provider.dart';
+import 'package:restaurant_system/models/resto_list.dart';
 import 'package:restaurant_system/widgets/restaurant_widget.dart';
 
 
 class RestaurantWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<RestoList> R1 = [];
+    MyProvider provider1 = Provider.of<MyProvider>(context);
+
+    R1 = provider1.throwrestlist;
+
     return Container(
       child: Align(
         alignment: Alignment.centerLeft,
@@ -30,15 +38,19 @@ class RestaurantWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Restaurant('Dominos Pizza', 'Bursa Nilüfer', 9.5),
-            SizedBox(
-              height: 5,
-            ),
-            Restaurant('Burger King', 'Ankara Atatürk Mah.', 8.4),
-            SizedBox(
-              height: 5,
-            ),
-            Restaurant('Dönerci Haşim Usta', 'Bilmemne Sokak', 7.2),
+           ListView(
+               padding: const EdgeInsets.fromLTRB(
+                 16.0,
+                 kToolbarHeight + 40.0,
+                 16.0,
+                 16.0,
+
+               ),
+
+               children:  R1.map(
+                   (e) => Restaurant(e.name,e.adres,e.point),
+             ).toList()
+           )
           ],
         ),
       ),

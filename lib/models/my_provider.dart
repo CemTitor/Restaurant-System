@@ -19,10 +19,10 @@ class MyProvider extends ChangeNotifier{
         name: element.data()['name'],
         price: element.data()['price'],
       );
-
+      newfoodModleList.add(foodModle);
 
     });
-    newfoodModleList.add(foodModle);
+
     foodModleList=newfoodModleList;
 
   }
@@ -41,10 +41,11 @@ List<RestoList> restlist=[];
         name: element.data()['name'],
         point: element.data()['point'],
       );
-      print(rest.name);
+
+       newRestoList.add(rest);
 
     });
-    newRestoList.add(rest);
+
     restlist=newRestoList;
 
   }

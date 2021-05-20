@@ -1,8 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_system/models/food_modle.dart';
 import 'package:restaurant_system/models/my_provider.dart';
-
 
 final priceTextStyle = TextStyle(
   color: Colors.grey.shade600,
@@ -13,13 +14,17 @@ final priceTextStyle = TextStyle(
 class CartScreen extends StatefulWidget {
   @override
   _CartScreenState createState() => _CartScreenState();
-
-
 }
 
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    List<FoodModle> singleFoodList = [];
+    MyProvider provider = Provider.of<MyProvider>(context);
+     provider.getFoodList();
+    singleFoodList = provider.throwFoodModleList;
+
+
 
 
     return Scaffold(
@@ -44,79 +49,25 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
+
+
           ListView(
             padding: const EdgeInsets.fromLTRB(
               16.0,
               kToolbarHeight + 40.0,
               16.0,
               16.0,
+
             ),
-            children: [
-              Text(
-                "My Order",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 30.0),
-              OrderListItem(
-                item: OrderItem(
 
-                  qty: 2,
-                  price: 20,
-                  bgColor: Colors.deepOrange,
-
-
-
-                ),
-              ),
-              const SizedBox(height: 20.0),
-
-              const SizedBox(height: 20.0),
-              _buildDivider(),
-              const SizedBox(height: 20.0),
-
-              const SizedBox(height: 20.0),
-              _buildDivider(),
-              const SizedBox(height: 10.0),
-              Row(
-                children: [
-                  const SizedBox(width: 40.0),
-                  Text(
-                    "Total",
-                    style: priceTextStyle.copyWith(color: Colors.black),
-                  ),
-                  Spacer(),
-                  Text(
-                    "\TL40",
-                    style: priceTextStyle.copyWith(color: Colors.indigo),
-                  ),
-                  const SizedBox(width: 20.0),
-                ],
-              ),
-              const SizedBox(height: 10.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-                child: RaisedButton(
-                  padding: const EdgeInsets.all(16.0),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)),
-                  color: Colors.yellow.shade700,
-                  child: Text(
-                    "Next",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-            ],
+            children: singleFoodList
+                .map(
+                  (e) => OrderListItem(e.image, e.price, e.name),
+            )
+                .toList(),
           ),
+
+
         ],
       ),
     );
@@ -133,26 +84,31 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
-class OrderItem {
-
-  final String title;
-  final int qty;
-  final double price;
-  final String image;
-  final Color bgColor;
-  OrderItem({this.title, this.qty, this.price, this.image, this.bgColor});
-}
+// class OrderItem {
+//
+//   final String title;
+//   final int qty;
+//   final double price;
+//   final String image;
+//   final Color bgColor;
+//   OrderItem({this.title, this.qty, this.price, this.image, this.bgColor});
+// }
 
 class OrderListItem extends StatelessWidget {
-  final OrderItem item;
+  // final OrderItem item;
+  // const OrderListItem({Key key, this.item}) : super(key: key);
 
-  const OrderListItem({Key key, this.item}) : super(key: key);
+  String image;
+  int price;
+  String name;
+
+  OrderListItem(this.image, this.price, this.name);
+
+  // OrderListItem(String image, int price, String name);
+
   @override
   Widget build(BuildContext context) {
-    List<FoodModle> singleFoodList= [];
-    MyProvider provider=Provider.of<MyProvider>(context);
-    provider.getFoodList();
-    singleFoodList = provider.throwFoodModleList;//firebasede foods collectionunu listeye ekledim. /ssu an tek bi veri cekiyoruz ffakaat yani listenin 1.elamanı (Foods daki pizza normalde pizza yı hamburgeri vs hepsini cekmemiz lazım onun ıcın de class yerine widget kullanacagız)
+    //firebasede foods collectionunu listeye ekledim. /ssu an tek bi veri cekiyoruz ffakaat yani listenin 1.elamanı (Foods daki pizza normalde pizza yı hamburgeri vs hepsini cekmemiz lazım onun ıcın de class yerine widget kullanacagız)
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -163,12 +119,12 @@ class OrderListItem extends StatelessWidget {
             height: 100,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
-              color: item.bgColor,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: singleFoodList[0].image != null
+            child: image != null
                 ? Image.network(
-              singleFoodList[0].image,
+              image,
               fit: BoxFit.cover,
             )
                 : null,
@@ -180,7 +136,7 @@ class OrderListItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  singleFoodList[0].name,
+                  name,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -207,7 +163,7 @@ class OrderListItem extends StatelessWidget {
                         onPressed: () {},
                       ),
                       Text(
-                        "${item.qty}",
+                        "${2}",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -228,11 +184,11 @@ class OrderListItem extends StatelessWidget {
           ),
           const SizedBox(width: 10.0),
           Text(
-            "\TL${item.price * item.qty}",
+            "\TL${price * 2}",
             style: priceTextStyle,
           ),
         ],
       ),
     );
   }
-}//
+}
