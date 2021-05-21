@@ -1,23 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_system/components/rounded_button.dart';
+import '../models/food_modle.dart';
+import '../models/my_provider.dart';
 
 class FoodDetailScreen extends StatefulWidget {
+  final String foodImage;
+  final int foodPrice;
+  final String foodName;
+  final String foodDescription;
   static const String id = 'food_detailScreen';
+
+  FoodDetailScreen({
+    @required this.foodImage,
+    @required this.foodPrice,
+    @required this.foodName,
+    @required this.foodDescription,
+  });
+
   @override
-  _FoodDetailState createState() => _FoodDetailState();
+  _FoodDetailScreenState createState() => _FoodDetailScreenState();
 }
 
-class _FoodDetailState extends State<FoodDetailScreen> {
-  int foodCount = 1;
+class _FoodDetailScreenState extends State<FoodDetailScreen> {
+  int foodQuantity = 1;
+
   @override
   Widget build(BuildContext context) {
+    List<FoodModle> singleFoodList = [];
+    MyProvider provider = Provider.of<MyProvider>(context);
+    provider.getFoodList();
+    singleFoodList = provider.throwFoodModleList;
+
     return Scaffold(
       // resizeToAvoidBottomInset: true,
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         backgroundColor: Color(0xFFD71219),
-        // automaticallyImplyLeading: false,
         title: Row(
           children: [
             Text("Food Details"),
@@ -35,29 +56,45 @@ class _FoodDetailState extends State<FoodDetailScreen> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset('images/popcorn.png'),
+                      Container(
+                        width: 200,
+                        height: 200,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: widget.foodImage != null
+                            ? Image.network(
+                                widget.foodImage,
+                                fit: BoxFit.cover,
+                              )
+                            : null,
+                      ),
                       SizedBox(
                         width: 10,
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            'Food ismi',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                      Flexible(
+                        child: Column(
+                          children: [
+                            Text(
+                              '${widget.foodName}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'description',
-                            style: TextStyle(
-                              fontSize: 15,
+                            SizedBox(
+                              height: 10,
                             ),
-                          )
-                        ],
+                            Text(
+                              '${widget.foodDescription}',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -70,26 +107,26 @@ class _FoodDetailState extends State<FoodDetailScreen> {
                             icon: const Icon(Icons.remove),
                             onPressed: () {
                               setState(() {
-                                if (foodCount > 1) foodCount--;
+                                if (foodQuantity > 1) foodQuantity--;
                               });
                             },
                           ),
                           Text(
-                            '$foodCount Piece',
+                            '$foodQuantity Piece',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           IconButton(
                             icon: const Icon(Icons.add),
                             onPressed: () {
                               setState(() {
-                                foodCount++;
+                                foodQuantity++;
                               });
                             },
                           ),
                         ],
                       ),
                       Text(
-                        'fiyat TL',
+                        '${widget.foodPrice} TL',
                         style: TextStyle(
                           fontSize: 22,
                           color: Colors.orange,
@@ -104,7 +141,14 @@ class _FoodDetailState extends State<FoodDetailScreen> {
             RoundedButton(
               title: 'Sepete Ekle',
               colour: Colors.green,
-              onPressed: null, //Sepete ekleme işlemi
+              onPressed: () {
+                provider.addToCart(
+                  image: widget.foodImage,
+                  name: widget.foodName,
+                  price: widget.foodPrice,
+                  quantity: foodQuantity,
+                );
+              }, //Sepete ekleme işlemi
             ),
           ],
         ),

@@ -1,19 +1,46 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_system/widgets/food_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_system/models/food_modle.dart';
+import 'package:restaurant_system/models/my_provider.dart';
+import '../widgets/food_widget.dart';
+import 'food_detail.dart';
+import 'main_screen.dart';
 
-class RestoDetailScreen extends StatefulWidget {
+class RestoDetailScreen extends StatelessWidget {
   static const String id = 'resto_detailScreen';
-  @override
-  _RestoDetailState createState() => _RestoDetailState();
-}
 
-class _RestoDetailState extends State<RestoDetailScreen> {
+  final String restaurantName;
+  final String restaurantAdress;
+  final int restaurantPoint;
+  final String restaurantImage;
+  // final Function onTap;
+
+  RestoDetailScreen({
+    @required this.restaurantName,
+    @required this.restaurantAdress,
+    @required this.restaurantPoint,
+    @required this.restaurantImage,
+  });
+
+//   @override
+//   _RestoDetailState createState() => _RestoDetailState();
+// }
+//
+// class _RestoDetailState extends State<RestoDetailScreen> {
+
   @override
   Widget build(BuildContext context) {
+    List<FoodModle> singleFoodList = [];
+    MyProvider provider = Provider.of<MyProvider>(context);
+    provider.getFoodList();
+    singleFoodList = provider.throwFoodModleList;
+
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         backgroundColor: Color(0xFFD71219),
         title: Row(
           children: [
@@ -39,11 +66,28 @@ class _RestoDetailState extends State<RestoDetailScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image.asset('images/popcorn.png'), //TODO restaurant fotosu
+                  Container(
+                    width: 200,
+                    height: 200,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: restaurantImage != null
+                        ? Image.network(
+                            restaurantImage,
+                            fit: BoxFit.cover,
+                          )
+                        : null,
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Restaurant ismi ve adresi '),
+                      Text(
+                        '$restaurantName',
+                        style: TextStyle(fontSize: 30),
+                      ),
                       Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -52,7 +96,7 @@ class _RestoDetailState extends State<RestoDetailScreen> {
                         width: 40,
                         child: Center(
                           child: Text(
-                            '6.7', //TODO restaurant puanı
+                            '$restaurantPoint',
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
@@ -76,12 +120,31 @@ class _RestoDetailState extends State<RestoDetailScreen> {
                 ),
               ),
             ),
-            Food('pizza', 2, 'food description'),
-            Food('pizza', 2, 'food description'),
-            Food('pizza', 2, 'food description'),
-            Food('pizza', 2, 'food description'),
-            Food('pizza', 2, 'food description'),
-            Food('pizza', 2, 'food description'),
+            ListView(
+              primary: false,
+              shrinkWrap: true,
+              children: singleFoodList
+                  .map(
+                    (e) => FoodWidget(
+                        foodImage: e.image,
+                        foodPrice: e.price,
+                        foodName: e.name,
+                        foodDescription: e.description,
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => FoodDetailScreen(
+                                foodImage: e.image,
+                                foodPrice: e.price,
+                                foodName: e.name,
+                                foodDescription: e.description,
+                              ),
+                            ),
+                          );
+                        }),
+                  )
+                  .toList(),
+            ),
             // RestaurantWidget(),
           ],
         ),

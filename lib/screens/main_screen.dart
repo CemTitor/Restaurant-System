@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_system/screens/account_screen.dart';
+import 'package:restaurant_system/screens/help_screen.dart';
 import 'package:restaurant_system/screens/home_screen.dart';
 import 'package:restaurant_system/screens/search_screen.dart';
 import 'package:restaurant_system/screens/cart_screen.dart';
@@ -30,8 +32,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     HomeScreen(),
     SearchScreen(),
     CartScreen(),
-    //account will be added
-    //help will be added
+    AccountScreen(),
+    HelpScreen(),
   ];
 
   @override

@@ -1,20 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_system/screens/food_detail.dart';
 
-class Food extends StatelessWidget {
-  String foodName;
-  int foodPrice;
-  String foodDescription;
+class FoodWidget extends StatelessWidget {
+  final String foodImage;
+  final int foodPrice;
+  final String foodName;
+  final String foodDescription;
+  final Function onTap;
 
-  Food(this.foodName, this.foodPrice, this.foodDescription);
+  FoodWidget(
+      {@required this.foodImage,
+      @required this.foodPrice,
+      @required this.foodName,
+      @required this.foodDescription,
+      @required this.onTap}); // String foodDescription;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.all(0),
-      onPressed: () {
-        Navigator.pushNamed(context, FoodDetailScreen.id);
-      },
+      onPressed: onTap,
       child: Container(
         padding: EdgeInsets.all(8),
         color: Colors.white,
@@ -35,7 +40,7 @@ class Food extends StatelessWidget {
                         fontSize: 20,
                       ),
                     ),
-                    Text(foodDescription),
+                    // Text(foodDescription),
                     SizedBox(
                       height: 15,
                     ),
@@ -49,15 +54,32 @@ class Food extends StatelessWidget {
                           width: 40,
                           child: Icon(Icons.add),
                         ),
+                        SizedBox(
+                          width: 15,
+                        ),
                         Text(
-                          '   ücret',
+                          '$foodPrice TL',
                           style: TextStyle(color: Colors.orange),
                         )
                       ],
                     ),
                   ],
                 ),
-                Image.asset('images/popcorn.png'),
+                Container(
+                  width: 100,
+                  height: 100,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: foodImage != null
+                      ? Image.network(
+                          foodImage,
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                ),
               ],
             ),
             Divider(
@@ -71,9 +93,3 @@ class Food extends StatelessWidget {
     );
   }
 }
-/*
-Widget Food({@required item }
-)
-
-
- */
