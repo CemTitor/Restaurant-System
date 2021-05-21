@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_system/screens/home_screen.dart';
 import 'package:restaurant_system/widgets/food_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_system/models/food_modle.dart';
@@ -40,7 +41,21 @@ class RestoDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back_rounded),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainScreen(),
+                  ),
+                );
+              },
+            );
+          },
+        ),
         backgroundColor: Color(0xFFD71219),
         title: Row(
           children: [

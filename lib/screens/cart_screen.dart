@@ -140,34 +140,6 @@ class CartScreen extends StatelessWidget {
           );
         },
       ),
-      // Column(
-      //   children: [
-      //     ListView(
-      //       padding: const EdgeInsets.fromLTRB(
-      //         16.0,
-      //         kToolbarHeight + 40.0,
-      //         16.0,
-      //         16.0,
-      //       ),
-      //       children: singleFoodList
-      //           .map(
-      //             (e) => OrderListItem(e.image, e.price, e.name),
-      //           )
-      //           .toList(),
-      //     ),
-      //   ],
-      // ),
-    );
-  }
-
-  Container _buildDivider() {
-    return Container(
-      height: 2.0,
-      width: double.maxFinite,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(5.0),
-      ),
     );
   }
 }
