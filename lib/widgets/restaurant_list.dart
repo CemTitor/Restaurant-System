@@ -28,7 +28,8 @@ class RestaurantList extends StatelessWidget {
       children: singleRestoList
           .map(
             (e) => Restaurant(e.name, e.adres, e.point, e.restaurantImage, () {
-              Navigator.of(context).pushReplacement(
+              Navigator.push(
+                context,
                 MaterialPageRoute(
                   builder: (context) => RestoDetailScreen(
                     restaurantName: e.name,

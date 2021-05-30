@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_system/screens/account_screen.dart';
+import 'package:restaurant_system/screens/other_screen.dart';
 import 'package:restaurant_system/screens/help_screen.dart';
 import 'package:restaurant_system/screens/home_screen.dart';
 import 'package:restaurant_system/screens/search_screen.dart';
@@ -32,7 +32,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     HomeScreen(),
     SearchScreen(),
     CartScreen(),
-    AccountScreen(),
+    OtherScreen(),
     HelpScreen(),
   ];
 
@@ -63,8 +63,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Account',
+            icon: Icon(Icons.menu),
+            label: 'Other',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.live_help),

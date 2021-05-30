@@ -146,7 +146,8 @@ class RestoDetailScreen extends StatelessWidget {
                         foodName: e.name,
                         foodDescription: e.description,
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
+                          Navigator.push(
+                            context,
                             MaterialPageRoute(
                               builder: (context) => FoodDetailScreen(
                                 foodImage: e.image,

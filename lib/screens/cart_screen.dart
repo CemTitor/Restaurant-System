@@ -126,6 +126,7 @@ class CartScreen extends StatelessWidget {
       // extendBody: true,
       // extendBodyBehindAppBar: true,
       body: ListView.builder(
+        reverse: true,
         itemCount: provider.cartList.length,
         itemBuilder: (ctx, index) {
           provider.getDeleteIndex(index);

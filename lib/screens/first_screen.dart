@@ -16,7 +16,6 @@ class _FirstScreenState extends State<FirstScreen>
   //state mixin ekleyerek welcomescreenstatein ticker provide olarak davranmasını sağlarız.
   AnimationController controller;
   Animation animation;
-  //welcomescreenstate yaratıldığında initstate methodu çalışır
   @override
   void initState() {
     super.initState();
@@ -32,7 +31,7 @@ class _FirstScreenState extends State<FirstScreen>
 
     animation =
         ColorTween(begin: Colors.blueGrey, end: Colors.red).animate(controller);
-    controller.forward(); // animasyonu zamanla büyütür
+    controller.forward(); // animasyonu büyütür ama geri kücülmesini saglamaz
     // controller.reverse(from: 1.0); burda tam tersi küçültür
 
     /**

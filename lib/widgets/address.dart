@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_system/screens/my_address_screen.dart';
 
 class Address extends StatelessWidget {
   @override
@@ -11,6 +12,14 @@ class Address extends StatelessWidget {
         children: [
           Expanded(
             child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyAdressScreen(),
+                  ),
+                );
+              },
               leading: Icon(
                 Icons.home,
                 color: Colors.black,

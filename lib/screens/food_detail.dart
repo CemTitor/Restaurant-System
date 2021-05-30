@@ -37,16 +37,16 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
       // resizeToAvoidBottomInset: true,
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
-        // leading: Builder(
-        //   builder: (BuildContext context) {
-        //     return IconButton(
-        //       icon: const Icon(Icons.arrow_back_rounded),
-        //       onPressed: () {
-        //         Navigator.pop(context);
-        //       },
-        //     );
-        //   },
-        // ),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back_rounded),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
         backgroundColor: Color(0xFFD71219),
         title: Row(
           children: [
