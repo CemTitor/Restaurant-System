@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_system/models/my_provider.dart';
 import 'package:restaurant_system/screens/resto_detail_screen.dart';
 import 'package:restaurant_system/widgets/restaurant_widget.dart';
 
@@ -9,16 +11,25 @@ class PreviousOrdersScreen extends StatelessWidget {
   int foodNumberInOrder = 1;
   final List<int> orderPrices = <int>[12, 23, 43];
 
+
   @override
   Widget build(BuildContext context) {
+    List myPrevorderList=[];
+    MyProvider provider = Provider.of<MyProvider>(context);
+    myPrevorderList=provider.throwPrevOrderList;
+    print("selam");
+    print(myPrevorderList[0]['list'][0]['name']);
+    print(myPrevorderList[0]['list'][1]['name']);
+
     return new Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: new AppBar(
         title: Text("Previous Orders"),
       ),
       body: ListView.separated(
+
         padding: const EdgeInsets.all(8),
-        itemCount: previousOrders.length,
+        itemCount: myPrevorderList.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
@@ -58,11 +69,16 @@ class PreviousOrdersScreen extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-                    itemCount: foodNumberInOrder,
+                    itemCount:  myPrevorderList[0]['list'].length,
                     itemBuilder: (BuildContext context, int index) {
+
+
+
+
                       return ListTile(
                         title: Text(
-                          'siparişin içindeki tek bir food',
+
+                            myPrevorderList[0]['list'][index]['name'],
                         ),
                         trailing: Text(
                           '1 adet',

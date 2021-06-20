@@ -10,7 +10,7 @@ import 'package:restaurant_system/models/food_modle.dart';
 import 'drink_modle.dart';
 
 class MyProvider extends ChangeNotifier {
-  
+
 
   List<FoodModle> foodModleList = [];
   FoodModle foodModle;
@@ -110,7 +110,7 @@ class MyProvider extends ChangeNotifier {
       newdessertModleList.add(dessertModle);
     });
    
-    print(newdessertModleList[0].name);
+
 
     dessertModleList = newdessertModleList;
   }
@@ -149,9 +149,9 @@ class MyProvider extends ChangeNotifier {
     return favorilist;
   }
 
-  //
-  // //////PREVIOUS ORDERRRR /////////
-  //
+
+  //////PREVIOUS ORDERRRR /////////
+
   //
   // List<FoodModle> prevorderList = [];
   // FoodModle perorder1;
@@ -174,7 +174,7 @@ class MyProvider extends ChangeNotifier {
   //
   //
   //
-  //     newprevorderList.add(perorder1);
+  //     newprevorderList.add(element.d;
   //   });
   //   print("PrevORDERDAYIZZZZ");
   //   print(newprevorderList[0].name.toString());
@@ -191,7 +191,43 @@ class MyProvider extends ChangeNotifier {
   // get throwprevOrderlist {
   //   return prevorderList;
   // }
-  //
+
+
+
+
+  ////PREVVV ORDER 2 /////
+  List prevOrderList = [];
+  Future<void> getprevList() async {
+    List newprevOrderList = [];
+
+
+
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('pordersbyuser').get();
+    querySnapshot.docs.forEach((element) {
+
+      newprevOrderList.add(element);
+
+
+
+    });
+
+    prevOrderList=newprevOrderList;
+
+
+
+
+
+  }
+
+  get throwPrevOrderList {
+    return prevOrderList;
+  }
+
+
+
+
+
 
 
 /////////////////////add to cart///////////////7

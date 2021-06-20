@@ -44,9 +44,9 @@ class CartScreen extends StatelessWidget {
             ),
             child: image != null
                 ? Image.network(
-                    image,
-                    fit: BoxFit.cover,
-                  )
+              image,
+              fit: BoxFit.cover,
+            )
                 : null,
           ),
           const SizedBox(width: 20.0),
@@ -166,7 +166,10 @@ class CartScreen extends StatelessWidget {
 
 
 
+
           });
+          print(yourItemList[0]['name'].toString());
+
 
 
 

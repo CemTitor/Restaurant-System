@@ -52,6 +52,7 @@ class menu extends StatelessWidget {
     provider.getFoodList();
     provider.getDrinkList();
     provider.getDessertList();
+    provider.getprevList();
     singleFoodList = provider.throwFoodModleList;
     singleDrinkList = provider.throwDrinkModleList;
     singleDessertList=provider.throwDessertModleList;
