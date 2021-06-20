@@ -1,4 +1,9 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_system/models/food_modle.dart';
+import 'package:restaurant_system/models/my_provider.dart';
 import 'package:restaurant_system/screens/other_screen.dart';
 import 'package:restaurant_system/screens/help_screen.dart';
 import 'package:restaurant_system/screens/home_screen.dart';
@@ -7,13 +12,22 @@ import 'package:restaurant_system/screens/cart_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = 'mainScreen';
+
   @override
   _MainState createState() => _MainState();
 }
 
 class _MainState extends State<MainScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
+    List<FoodModle> singleFoodList = [];
+    MyProvider provider = Provider.of<MyProvider>(context);
+    provider.getFoodList();
+    singleFoodList = provider.throwFoodModleList;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: MyBottomNavigationBar(),

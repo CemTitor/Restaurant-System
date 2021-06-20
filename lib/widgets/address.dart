@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_system/screens/menu.dart';
 import 'package:restaurant_system/screens/my_address_screen.dart';
 
 class Address extends StatelessWidget {
@@ -37,12 +38,31 @@ class Address extends StatelessWidget {
             height: double.infinity,
             color: Colors.orange,
             child: Center(
-              child: Text(
-                'List \n Restaurants',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+
+
+
+
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(
+                    fontSize: 25,
+                    color: Color(0xFFD71219),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => menu(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Menu',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFFFFFFF),
+                  ),
                 ),
               ),
             ),

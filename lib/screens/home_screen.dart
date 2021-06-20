@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_system/screens/menu.dart';
 import 'package:restaurant_system/widgets/campaign.dart';
 import 'package:restaurant_system/widgets/favorites_title.dart';
 import 'package:restaurant_system/widgets/previous_orders.dart';
 import 'package:restaurant_system/widgets/previous_orders_title.dart';
 import 'package:restaurant_system/widgets/account_info.dart';
 import 'package:restaurant_system/widgets/address.dart';
-import 'package:restaurant_system/widgets/restaurant_list.dart';
+import 'package:restaurant_system/widgets/favori_list.dart';
 
 class HomeScreen extends StatefulWidget {
+
   static const String id = 'homeScreen';
   @override
   _HomeState createState() => _HomeState();
@@ -40,9 +42,9 @@ class _HomeState extends State<HomeScreen> {
             // BookNow(), //add another page
             Address(),
             PreviousOrdersTitle(),
-            PreviousOrders(),
+      //      PreviousOrders(),
             FavoritesTitle(),
-            RestaurantList(),
+            AdviceList(),
           ],
         ),
       ),

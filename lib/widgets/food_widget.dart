@@ -5,15 +5,16 @@ class FoodWidget extends StatelessWidget {
   final String foodImage;
   final int foodPrice;
   final String foodName;
-  final String foodDescription;
+  //final String foodDescription;
   final Function onTap;
 
   FoodWidget(
       {@required this.foodImage,
       @required this.foodPrice,
       @required this.foodName,
-      @required this.foodDescription,
-      @required this.onTap}); // String foodDescription;
+  //    @required this.foodDescription,
+     @required this.onTap
+  }); // String foodDescription;
 
   @override
   Widget build(BuildContext context) {

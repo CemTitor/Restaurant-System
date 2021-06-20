@@ -13,7 +13,7 @@ class FavoritesTitle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Favorite Restaurants',
+            "Chef's Advice Menu's ",
             style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontSize: 15,

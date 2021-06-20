@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_system/models/food_modle.dart';
 import 'package:restaurant_system/models/my_provider.dart';
+import 'package:restaurant_system/models/status_service.dart';
 
 final priceTextStyle = TextStyle(
   color: Colors.grey.shade600,
@@ -10,6 +13,10 @@ final priceTextStyle = TextStyle(
 );
 
 class CartScreen extends StatelessWidget {
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+  List<String> porders = [];
+  StatusService _statusService = StatusService();
 //   @override
 //   _CartScreenState createState() => _CartScreenState();
 // }
@@ -141,6 +148,44 @@ class CartScreen extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          List yourItemList = [];
+          for (int i = 0; i < provider.cartList.length; i++)
+            yourItemList.add({
+              "image": provider.cartList[i].image,
+              "name": provider.cartList[i].name,
+              "price": provider.cartList[i].price,
+
+            });
+          _firestore
+              .collection('pordersbyuser')
+              .doc(_auth.currentUser.uid)
+              .set({
+            'list': yourItemList.toList(),
+
+
+
+          });
+
+
+
+
+          // _fireStore.collection('notifyseller').document().updateData({
+          //   'Customer': userName,
+          //   "address": controller.text,
+          //   "mobile": mobileNumber,
+          //   "Item": FieldValue.arrayUnion(yourItemList),
+          // });
+
+          porders.add('Yeni adres');
+        },
+        label: const Text('Place The Order'),
+        icon: const Icon(Icons.add_circle_outline),
+        backgroundColor: Colors.green,
+      ),
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.miniCenterFloat,
     );
   }
 }

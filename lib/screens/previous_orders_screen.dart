@@ -42,17 +42,17 @@ class PreviousOrdersScreen extends StatelessWidget {
                     title: Text('Sipariş yeri'),
                     subtitle: Text('alınma tarihi'),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RestoDetailScreen(
-                              // restaurantName: e.name,
-                              // restaurantAdress: e.adres,
-                              // restaurantPoint: e.point,
-                              // restaurantImage: e.restaurantImage,
-                              ),
-                        ),
-                      );
+                      //   Navigator.push(
+                        //context,
+                        // MaterialPageRoute(
+                        // builder: (context) => RestoDetailScreen(
+                        //       // restaurantName: e.name,
+                        //       // restaurantAdress: e.adres,
+                        //       // restaurantPoint: e.point,
+                        //       // restaurantImage: e.restaurantImage,
+                        //       ),
+                        // ),
+                      //);
                     },
                   ),
                   ListView.builder(
