@@ -1,5 +1,5 @@
-![Logo](https://w7.pngwing.com/pngs/266/598/png-transparent-italian-cuisine-cafe-restaurant-computer-icons-menu-irregular-shading-food-text-cafe.png)
 
+![res-removebg-preview](https://user-images.githubusercontent.com/43721794/156557076-270787a1-758e-4919-8877-98f4f7bbefd2.png)
 
 # Restaurant System
 
@@ -33,7 +33,7 @@ Using flutter and firebase and provider. A food order system application in the 
     
 ## Demo
 
-![restaurant](https://user-images.githubusercontent.com/43721794/156555768-d5c1aa04-09fe-4146-b9b3-3d303e6d7ceb.gif)
+
 
 ![Alt text](name-of-gif-file.gif) / ![](name-of-gif-file.gif)
 
