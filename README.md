@@ -1,5 +1,6 @@
 
-![res-removebg-preview](https://user-images.githubusercontent.com/43721794/156557076-270787a1-758e-4919-8877-98f4f7bbefd2.png)
+![res (2)](https://user-images.githubusercontent.com/43721794/156558085-1bfeee41-8488-4f56-9b2a-8367756ad4fe.png)
+
 
 # Restaurant System
 
@@ -35,7 +36,7 @@ Using flutter and firebase and provider. A food order system application in the 
 
 
 
-![Alt text](name-of-gif-file.gif) / ![](name-of-gif-file.gif)
+![Alt text](https://github.com/CemTitor/Restaurant-System/upload/master/images/resto.gif) / ![](https://github.com/CemTitor/Restaurant-System/upload/master/images/resto.gif)
 
 ## Feedback
 
