@@ -36,7 +36,7 @@ Using flutter and firebase and provider. A food order system application in the 
 
 
 
-![Alt text](https://github.com/CemTitor/Restaurant-System/blob/master/images/resto.gif) / ![](https://github.com/CemTitor/Restaurant-System/blob/master/images/resto.gif)
+![Alt text](https://github.com/CemTitor/Restaurant-System/blob/master/images/resto.gif)
 
 ## Feedback
 
